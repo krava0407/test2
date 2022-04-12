@@ -347,6 +347,10 @@ def test_add(x, y):
 def test_skipp():
     assert 1 == 1
 
+def print_hello():
+    return print('Hello Word')
+print_hello()
+
 
 import requests
 
