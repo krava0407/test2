@@ -347,9 +347,21 @@ def test_add(x, y):
 def test_skipp():
     assert 1 == 1
 
+
+
+
+def decor_test_func(func):
+    def inner():
+        print("Test func wrapper start")
+        func()
+        print("Test func wrapper stop")
+    return inner
+
+@decor_test_func
 def print_hello():
     return print('Hello Word')
-print_hello()
+
+decor_test_func(print_hello())
 
 
 import requests
@@ -365,5 +377,150 @@ def test_smoke(fact_url):
     reply = requests.get(fact_url)
     # assert reply.status_code == requests.codes.ok
     assert reply.status_code == 200
+
+
+def fun_wrapper(func):
+    def inner():
+        print('Start')
+        func()
+        print('Stop')
+    return inner
+
+@fun_wrapper
+def print_text():
+    print('Printing text')
+
+print_text()
+
+
+def cycle(cycle = 5):
+    x = 10
+    while cycle > 0:
+        print(x)
+        x -=1
+        if x == 0:
+            x = 10
+            cycle -= 1
+
+cycle()
+
+new_str = 'qwerty'
+ch_str = new_str[::-1]
+print(ch_str)
+
+ch_str_new = ''.join(reversed(new_str))
+print(ch_str_new)
+
+
+lst = [1,2,3,4,4,(1,2,3), 'wer', 5]
+lst_str = str(lst)
+type(lst_str)
+type(lst)
+lst_tuple = tuple(lst)
+type(lst_tuple)
+lst_set = set(lst)
+type(lst_set)
+lst_dic = dict(lst)
+
+i = iter(lst)
+b = dict(zip(i, i))
+
+l1 = [1,2,3]
+l2 = [3,2,1]
+new_dic = dict(zip(l1,l2))
+print(new_dic)
+
+
+stroka = ['Hello', 'word', '!']
+
+#new_stroka = ' '.join(stoka)
+
+def wrapper(func):
+    def inner(stroka):
+        print('Start join.')
+        func(stroka)
+        print('Stop join.')
+    return inner
+
+@wrapper
+def func_join(stroka):
+    full_str = ' '.join(stroka)
+    return print(full_str)
+
+func_join(stroka)
+
+
+
+
+
+
+
+def param_transfer(fn):
+    def wrapper(arg):
+        print('Run func: ' + str(fn.__name__) + '(), with param: ' + str(arg))
+        fn(arg)
+    return wrapper
+
+@param_transfer
+def print_sum(num):
+    num = num + 100
+    print(num)
+
+print_sum(4)
+
+
+
+for i in range(0,5):
+    print(i)
+
+gen = (i for i in range(0, 6))
+for i in gen:
+    print(i)
+
+def simple_gen(val):
+    while val > 0:
+        val -= 1
+        yield val   #--------pause in work generator
+gen_iters = simple_gen(5)
+print(next(gen_iters))
+
+while True:
+    print('Endless cycle')
+
+for i in range(11):
+    #print(i)
+    if i == 12:
+        print(f'Cycle is break. i = {i}')
+        break
+    print(i)
+else:
+    print('Work else')
+
+
+
+"""Create gegerator"""
+
+def gen(val):
+    while val > 0:
+        val -= 1
+        yield val
+
+gen_iters = gen(5)
+
+print(next(gen_iters))
+
+g = (i for i in range(0, 11))
+for i in g:
+    print(i)
+
+
+for i in range(0, 5):
+    print(i)
+
+
+
+
+
+
 
 
