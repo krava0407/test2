@@ -61,9 +61,13 @@ def test_smoke():
     req = requests.get('http://leafground.com/')
     assert req.status_code == 200
 
-search_button = driver.find_element_by_xpath("//a[@href='pages/Edit.html']")
-search_button.click()
-assert "TestLeaf - Interact with Edit Fields" == driver.title
+def page_edit():
+    search_button = driver.find_element_by_xpath("//a[@href='pages/Edit.html']")
+    search_button.click()
+    assert "TestLeaf - Interact with Edit Fields" == driver.title
+
+page_edit()
+
 search_field_email = driver.find_element_by_xpath("//input[@id='email']")
 search_field_email.click()
 search_field_email.send_keys("asd@gmail.com")

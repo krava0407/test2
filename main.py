@@ -520,7 +520,8 @@ def test_smoke(fact_url):
 #
 
 
-
+d = {1:'123', 2:'321'}
+print(*d)
 
 
 
